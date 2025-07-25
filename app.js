@@ -12,6 +12,10 @@ app.use(express.json());
 const authRoutes = require("./src/routes/authRoutes");
 app.use("/", authRoutes);
 
+const productRoutes = require("./src/routes/productRoutes");
+app.use("/products", productRoutes);
+
+
 
 app.get("/", (req, res) => {
   res.send("Inventory Management Tool API is running");
