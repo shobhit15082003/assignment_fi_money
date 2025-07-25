@@ -19,13 +19,17 @@ app.get("/", (req, res) => {
   res.send("Inventory Management Tool API is running");
 });
 
+const { swaggerUi, specs } = require("./swagger");
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(specs));
+
+
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, async () => {
   try {
     await sequelize.authenticate();
     console.log("DB Connected Successfully");
     await sequelize.sync({ alter: true });
-    console.log("✅ Models synchronized.");
+    console.log("Models synchronized.");
   } catch (error) {
     console.log("DB Connected Failed");
     console.log(error);
