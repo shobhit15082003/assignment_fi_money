@@ -2,6 +2,8 @@ const express = require("express");
 const dotenv = require("dotenv");
 const sequelize=require('./src/config/db');
 
+const { User, Product } = require("./src/models");
+
 dotenv.config();
 
 const app = express();
