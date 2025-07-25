@@ -11,15 +11,15 @@ services:
       - .:/usr/src/app
     environment:
       - DB_USER=postgres
-      - DB_PASSWORD=password
+      - DB_PASSWORD=postgrespassword
       - DB_NAME=inventory_db
       - DB_HOST=db
       - DB_PORT=5432
-      - JWT_SECRET=supersecretkey
+      - JWT_SECRET=Shobhit_key
       - NODE_ENV=development
 
   db:
-    image: postgres:15
+    image: postgres
     restart: always
     ports:
       - "5432:5432"

@@ -1,4 +1,7 @@
 const { Sequelize } = require("sequelize");
+require("dotenv").config();
+console.log("DB_PASSWORD =", process.env.DB_PASSWORD);
+console.log("Type of DB_PASSWORD =", typeof process.env.DB_PASSWORD);
 
 const sequelize = new Sequelize(
   process.env.DB_NAME,
@@ -11,5 +14,6 @@ const sequelize = new Sequelize(
     logging: false, 
   }
 );
+console.log(sequelize);
 
 module.exports = sequelize;

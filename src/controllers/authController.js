@@ -7,16 +7,20 @@ const JWT_SECRET = process.env.JWT_SECRET;
 exports.register = async (req, res) => {
   const { username, password } = req.body;
   try {
+    console.log('first');
     const exists = await User.findOne({ where: { username } });
+    console.log('second');
     if (exists) {
       return res.status(409).json({ message: "User already exists" });
     }
+  
+    
 
     const hashedPassword = await bcrypt.hash(password, 10);
     const user = await User.create({ username, password: hashedPassword });
     return res.status(201).json({ message: "User registered successfully" });
   } catch (err) {
-    return res.status(500).json({ message: "Server error" });
+    return res.status(500).json({ message: "Server error",err });
   }
 };
 
@@ -35,6 +39,7 @@ exports.login = async (req, res) => {
 
     return res.status(200).json({ access_token: token });
   } catch (err) {
-    return res.status(500).json({ message: "Server error" });
-  }
+  console.error("Registration Error:", err);  // ADD THIS
+  return res.status(500).json({ message: "Server error", error: err.message });
+}
 };
