@@ -18,6 +18,7 @@ function App() {
             </ProtectedRoute>
           }
         />
+        <Route path="/register" element={<Register />} />
 
         <Route path="*" element={<div className="p-6">404 Not Found</div>} />
       </Routes>
