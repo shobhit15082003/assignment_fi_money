@@ -35,7 +35,7 @@ const options = {
     ],
   },
 
-  // Path to the API route files where Swagger JSDoc comments are written
+
   apis: ["./src/routes/*.js"],
 };
 

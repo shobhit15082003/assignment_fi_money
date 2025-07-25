@@ -26,10 +26,21 @@ exports.updateQuantity = async (req, res) => {
 };
 
 exports.getProducts = async (req, res) => {
+  const page = parseInt(req.query.page) || 1;
+  const limit = parseInt(req.query.limit) || 10;
+
+  const offset = (page - 1) * limit;
+
   try {
-    const products = await Product.findAll();
+    const products = await Product.findAll({
+      limit,
+      offset,
+      order: [["id", "ASC"]],
+    });
+
     return res.json(products);
   } catch (err) {
     return res.status(500).json({ message: "Server error" });
   }
 };
+
