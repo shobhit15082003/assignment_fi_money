@@ -7,6 +7,8 @@ WORKDIR /usr/src/app
 # Copy dependency files and install
 COPY package*.json ./
 RUN npm install
+RUN npm i cors
+RUN npm i nodemon
 
 # Copy source code
 COPY . .

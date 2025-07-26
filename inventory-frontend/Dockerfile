@@ -1,0 +1,12 @@
+FROM node:18-alpine
+
+WORKDIR /app
+
+COPY package.json package-lock.json ./
+RUN npm install
+
+COPY . .
+
+# CRA dev server runs on 3000 by default
+EXPOSE 3000
+CMD ["npm", "start"]
