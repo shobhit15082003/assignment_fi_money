@@ -48,6 +48,8 @@ docker-compose up --build
 ```
 App will be live at: http://localhost:8080
 
+Frontend will be live at: http://localhost:3000
+
 Swagger docs at: http://localhost:8080/api-docs
 
 ## 🧪 How to Use in Postman
@@ -77,7 +79,7 @@ token = <your-jwt-token>
   GET /products
 ```
 
-```
-  
 ---
+  
+
 
