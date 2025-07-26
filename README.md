@@ -76,6 +76,23 @@ token = <your-jwt-token>
 
   GET /products
 ```
+
+## .env
+```bash
+# Server Port
+PORT=8080
+
+# Database Configuration
+DB_USER=postgres        # Your PostgreSQL username
+DB_PASSWORD=your_password_here   # Your PostgreSQL password
+DB_NAME=inventory_db    # Database name (change if needed)
+DB_HOST=db              # Use 'db' when running inside Docker (matches docker-compose service name)
+DB_PORT=5432            # Default PostgreSQL port
+
+# JWT Secret Key
+JWT_SECRET=Shobhit_key  # Secret key for token signing
+
+```
   
 ---
 
