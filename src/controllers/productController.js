@@ -1,5 +1,7 @@
 const { Product } = require("../models");
 
+
+
 exports.addProduct = async (req, res) => {
   try {
     const product = await Product.create(req.body);
@@ -8,6 +10,8 @@ exports.addProduct = async (req, res) => {
     return res.status(500).json({ message: "Server error", error: err.message });
   }
 };
+
+
 
 exports.updateQuantity = async (req, res) => {
   const { id } = req.params;

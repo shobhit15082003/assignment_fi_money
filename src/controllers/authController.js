@@ -39,7 +39,7 @@ exports.login = async (req, res) => {
 
     return res.status(200).json({ access_token: token });
   } catch (err) {
-  console.error("Registration Error:", err);  // ADD THIS
+  console.error("Registration Error:", err);  
   return res.status(500).json({ message: "Server error", error: err.message });
 }
 };
