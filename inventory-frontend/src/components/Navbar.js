@@ -9,23 +9,39 @@ export default function Navbar() {
     localStorage.removeItem("token");
     navigate("/login");
   };
-
   return (
     <nav className="bg-gray-900 text-white p-4 flex justify-between items-center">
-      <div className="font-bold text-lg">IMS</div>
+      <button
+        className="font-bold text-lg cursor-pointer"
+        onClick={() => navigate(isLoggedIn ? "/dashboard" : "/login")}
+      >
+        IMS
+      </button>
+
       <div className="space-x-4">
         {isLoggedIn ? (
           <>
-            <Link to="/dashboard" className="hover:underline">Dashboard</Link>
-            <Link to="/add" className="hover:underline">Add Product</Link>
-            <button onClick={handleLogout} className="bg-red-600 px-3 py-1 rounded hover:bg-red-700">
+            <Link to="/dashboard" className="hover:underline">
+              Dashboard
+            </Link>
+            <Link to="/add" className="hover:underline">
+              Add Product
+            </Link>
+            <button
+              onClick={handleLogout}
+              className="bg-red-600 px-3 py-1 rounded hover:bg-red-700"
+            >
               Logout
             </button>
           </>
         ) : (
           <>
-            <Link to="/login" className="hover:underline">Login</Link>
-            <Link to="/register" className="hover:underline">Register</Link>
+            <Link to="/login" className="hover:underline">
+              Login
+            </Link>
+            <Link to="/register" className="hover:underline">
+              Register
+            </Link>
           </>
         )}
       </div>
