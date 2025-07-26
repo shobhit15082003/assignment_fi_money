@@ -1,14 +1,51 @@
+# version: '3.8'
+
+# services:
+#   api:
+#     build: .
+#     ports:
+#       - "8080:8080"
+#     depends_on:
+#       - db
+#     volumes:
+#       - .:/usr/src/app
+#     environment:
+#       - DB_USER=postgres
+#       - DB_PASSWORD=postgrespassword
+#       - DB_NAME=inventory_db
+#       - DB_HOST=db
+#       - DB_PORT=5432
+#       - JWT_SECRET=Shobhit_key
+#       - NODE_ENV=development
+
+#   db:
+#     image: postgres
+#     restart: always
+#     ports:
+#       - "5432:5432"
+#     environment:
+#       POSTGRES_USER: postgres
+#       POSTGRES_PASSWORD: postgrespassword
+#       POSTGRES_DB: inventory_db
+#     volumes:
+#       - pgdata:/var/lib/postgresql/data
+
+# volumes:
+#   pgdata:
+
 version: '3.8'
 
 services:
   api:
     build: .
+    container_name: inventory-api
     ports:
       - "8080:8080"
     depends_on:
       - db
     volumes:
       - .:/usr/src/app
+      - /usr/src/app/node_modules
     environment:
       - DB_USER=postgres
       - DB_PASSWORD=postgrespassword
@@ -18,8 +55,29 @@ services:
       - JWT_SECRET=Shobhit_key
       - NODE_ENV=development
 
+  frontend:
+    build:
+      context: ./inventory-frontend
+    container_name: inventory-frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - api
+    environment:
+      # Useful for CRA inside Docker
+      - CHOKIDAR_USEPOLLING=true
+      - WDS_SOCKET_PORT=0
+      # Point your frontend to the API (adjust if you proxy differently)
+      - REACT_APP_API_URL=http://localhost:3000
+    volumes:
+      - ./inventory-frontend:/app
+      - /app/node_modules
+    stdin_open: true
+    tty: true
+
   db:
     image: postgres
+    container_name: inventory-db
     restart: always
     ports:
       - "5432:5432"
