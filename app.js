@@ -6,11 +6,11 @@ const { User, Product } = require("./src/models");
 
 dotenv.config();
 
-const app = express(); // ✅ define app BEFORE using middlewares
+const app = express(); 
 
-// ✅ Use CORS middleware after app is defined
+
 app.use(cors({
-  origin: "http://localhost:3000",
+  origin: "*",
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],
 }));
